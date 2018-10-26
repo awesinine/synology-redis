@@ -60,7 +60,7 @@ RUN set -ex; \
 	\
 	redis-server --version
 
-RUN mkdir /data && chown redis:redis /data
+RUN mkdir /data
 VOLUME /data
 WORKDIR /data
 
