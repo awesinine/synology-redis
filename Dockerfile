@@ -4,7 +4,7 @@ FROM alpine:3.8
 
 #RUN addgroup -S redis && adduser -G -u 1024 redis redis
 
-RUN addgroup redis && adduser -D -u 1024 -G redis redis
+RUN addgroup -g 1024 redis && adduser -D -u 1024 redis -G redis
 
 RUN apk add --no-cache \
 # grab su-exec for easy step-down from root
@@ -60,7 +60,7 @@ RUN set -ex; \
 	\
 	redis-server --version
 
-RUN mkdir /data
+RUN mkdir /data && chown redis:redis /data
 VOLUME /data
 WORKDIR /data
 
